@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Paper, IconButton } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { Paper, IconButton, InputBase } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState(''); // State variable to store the input value
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Perform any necessary actions with the search term (e.g., navigate to a new page)
+
         if (searchTerm) {
             navigate(`/search/${searchTerm}`);
-            setSearchTerm("");
+            setSearchTerm('');
         }
     };
 
@@ -21,26 +21,44 @@ const SearchBar = () => {
             component='form'
             onSubmit={handleSubmit}
             sx={{
-                borderRadius: 25,
+                display: 'flex',
+                alignItems: 'center',
+                borderRadius: 20,
                 border: '1px solid #e3e3e3',
-                pl: 5,
+                pl: 1,
+                pr: 4,
                 boxShadow: 'none',
-                mr: { sm: 5 },
+                mr: { sm: 1 },
                 position: 'absolute',
                 top: '50%',
-                left: '50%',
+                left: '55%',
                 transform: 'translate(-50%, -50%)',
-
+                '@media (max-width: 600px)': {
+                    width: '40%',
+                    borderTopLeftRadius: 20,
+                    borderBottomLeftRadius: 20,
+                    borderTopRightRadius: 20,
+                    borderBottomRightRadius: 20,
+                },
             }}
         >
-            <input
-                className="search-bar"
-                placeholder="Search..."
+            <InputBase
+                className='search-bar'
+                placeholder='Search...'
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)} // Update the state on input change
+                onChange={(e) => setSearchTerm(e.target.value)}
+                sx={{
+                    border: 'none',
+                    outline: 'none',
+                    flexGrow: 1,
+                    fontSize: '1rem', // Increase font size
+                    padding: '7px', // Add padding
+                    backgroundColor: '#f5f5f5', // Change background color
+                    borderRadius: '40px', // Add some border radius
+                }}
             />
-            <IconButton type="submit" sx={{ p: '10px', color: '#7F00FF' }}>
-                <Search />
+            <IconButton type='submit' sx={{ p: '1px', color: '#7F00FF' }} aria-label='search'>
+                <SearchIcon />
             </IconButton>
         </Paper>
     );

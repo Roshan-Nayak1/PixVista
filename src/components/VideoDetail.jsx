@@ -56,7 +56,7 @@ const VideoDetail = () => {
                 >
                   {channelTitle}
                   <CheckCircle
-                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                    sx={{ fontSize: "0.8rem", color: "gray", verticalAlign: 'text-top', ml: "5px" }}
                   />
                 </Typography>
               </Link>
